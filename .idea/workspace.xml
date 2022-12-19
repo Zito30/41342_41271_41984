@@ -6,10 +6,8 @@
   <component name="ChangeListManager">
     <list default="true" id="5882ca47-68bc-4030-980a-156285bbeac1" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Projeto/Avaria.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Projeto/Avaria.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Projeto/Docente.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Projeto/Docente.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Projeto/Pessoa.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Projeto/Pessoa.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Projeto/UC.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Projeto/UC.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Projeto/Material.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Projeto/Material.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Projeto/Pedido.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Projeto/Pedido.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

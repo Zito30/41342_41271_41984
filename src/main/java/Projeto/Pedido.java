@@ -8,10 +8,9 @@ public class Pedido {
     private String dataDevolucao;
     public ArrayList<Material>materiais=new ArrayList<Material>();
 
-    public Pedido(int id,String dataPedido,String dataDevolucao){
+    public Pedido(int id,String dataPedido){
         this.id=id;
         this.dataPedido=dataPedido;
-        this.dataDevolucao=dataDevolucao;
     }
 
     public int getId() {

@@ -3,21 +3,22 @@ package Projeto;
 import java.util.ArrayList;
 
 public class Material {
-    private int id;
+    private String etiqueta;
     private String nome;
     private String cabecalho;
+    private int tipo;
     public ArrayList<Pedido>pedidos=new ArrayList<Pedido>();
     public ArrayList<Avaria>avarias=new ArrayList<Avaria>();
     public  ArrayList<Consumivel>consumiveis=new ArrayList<Consumivel>();
 
-    public Material(int id,String nome,String cabecalho){
-        this.id=id;
+    public Material(String etiqueta,String nome,String cabecalho){
+        this.etiqueta=etiqueta;
         this.nome=nome;
         this.cabecalho=cabecalho;
     }
 
-    public int getId() {
-        return id;
+    public String getEtiqueta() {
+        return etiqueta;
     }
 
     public String getNome() {
@@ -27,6 +28,8 @@ public class Material {
     public String getCabecalho() {
         return cabecalho;
     }
+
+    public int getTipo(){return tipo;}
 
     public ArrayList<Pedido> getPedidos() {
         return pedidos;
