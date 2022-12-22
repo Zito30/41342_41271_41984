@@ -58,13 +58,13 @@ public class Gestor {
             for(Material m:materiais){
                 if(m.getTipo()==1){contaComputador++;}
             }
-            etiqueta = "DR"+contaComputador+1;
+            etiqueta = "CP"+contaComputador+1;
         }
         else if(tipo=="3"){//Carro
             for(Material m:materiais){
                 if(m.getTipo()==1){contaCarro++;}
             }
-            etiqueta = "DR"+contaCarro+1;
+            etiqueta = "CR"+contaCarro+1;
         }
         return etiqueta;
     }
