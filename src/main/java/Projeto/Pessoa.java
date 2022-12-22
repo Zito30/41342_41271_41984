@@ -9,11 +9,11 @@ public class Pessoa {
     private int idade;
     public ArrayList<Pedido>pedidos=new ArrayList<Pedido>();
 
-    public Pessoa(int id, String nome, int cc, int idade) {
-        this.id = id;
+    public Pessoa(String nome, int cc, int idade, int id) {
         this.nome = nome;
         this.cc = cc;
         this.idade = idade;
+        this.id=id;
     }
 
     public int getId() {
