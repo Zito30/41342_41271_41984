@@ -7,6 +7,7 @@ public class Gestor {
     Gestor g = new Gestor();
 
     ArrayList<Pessoa>pessoas;
+    int contaPessoasRegistadas=0;
     ArrayList<Material>materiais;
     ArrayList<UC>ucs;
     ArrayList<Pedido>pedidos;
@@ -24,9 +25,10 @@ public class Gestor {
 
         if (flagExiste==0){
             PessoaFactory pf = new PessoaFactory();
-            int id=pessoas.size()+1;
+            int id=contaPessoasRegistadas+1;
             Pessoa p = pf.criarPessoa(nome, cc, idade,id);
             pessoas.add(p);
+            contaPessoasRegistadas++;
             System.out.println("Pessoa adicionada com sucesso.");
         }
 
