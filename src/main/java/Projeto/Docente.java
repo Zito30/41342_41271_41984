@@ -8,7 +8,6 @@ public class Docente extends Pessoa{
 
     public Docente(int id,String nome,int cc,int idade){
         super(id,nome,cc,idade);
-
     }
 
     public ArrayList<UC> getUcs() {
