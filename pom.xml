@@ -17,6 +17,11 @@
   </properties>
 
   <dependencies>
+    <dependency>
+      <groupId>com.opencsv</groupId>
+      <artifactId>opencsv</artifactId>
+      <version>5.7.1</version>
+    </dependency>
     <!-- https://mvnrepository.com/artifact/org.junit.jupiter/junit-jupiter -->
     <dependency>
       <groupId>org.junit.jupiter</groupId>
@@ -24,6 +29,5 @@
       <version>5.9.1</version>
       <scope>test</scope>
     </dependency>
-
   </dependencies>
 </project>

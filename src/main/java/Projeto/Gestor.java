@@ -1,7 +1,20 @@
 package Projeto;
 
+
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
+
+
+import java.io.IOException;
+import com.opencsv.CSVReader;
+import com.opencsv.CSVWriter;
+import com.opencsv.CSVReaderBuilder;
+import com.opencsv.exceptions.CsvException;
+import java.io.Reader;
+import java.io.Writer;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 
 
 public class Gestor {
@@ -18,6 +31,28 @@ public class Gestor {
     public ArrayList<UC>ucs=new ArrayList<>();
     public ArrayList<Pedido>pedidos=new ArrayList<>();
 
+    public void escrever(String []str, String nomeCsv) throws IOException, CsvException {
+        List<String[]> linhas = new ArrayList<>();
+        linhas.add(str);
+        Writer escritor = Files.newBufferedWriter(Paths.get(nomeCsv + ".cvs"));
+        CSVWriter csvEscritor = new CSVWriter(escritor);
+        csvEscritor.writeAll(linhas);
+        csvEscritor.flush();
+        escritor.close();
+    }
+
+    public void lerCvs(String csvNome) throws IOException, CsvException {
+       Reader leitor = Files.newBufferedReader(Paths.get(csvNome+".csv"));
+       CSVReader csvLeitor = new CSVReaderBuilder(leitor).withSkipLines(1).build();
+
+       List<String[]> tab = csvLeitor.readAll();
+       for (String[] col : tab)
+           System.out.println(
+                            " "+ col[0] +
+                            " "+ col[1] +
+                            " "+ col[2] +
+                            " "+ col[3]);
+    }
     public void criarPessoa(String nome, int cc, int idade) {
 
         int flagExiste=0;
@@ -299,5 +334,4 @@ public class Gestor {
             return "Erro";
         }
     }
-
 }
