@@ -248,6 +248,7 @@ public class Gestor {
         }
     }
 
+    /*
     public void registarPedido(){
         ArrayList<Material>materiaisDoPedido = new ArrayList<>();
         Material matPed = null;
@@ -281,41 +282,19 @@ public class Gestor {
             }
         }
     }
+    */
 
-    public String registarPedidoTest(String data, String etqMat) {
-        ArrayList<Material> materiaisDoPedido = new ArrayList<>();
-        Material matPed = null;
-        int numPedido = pedidos.size() + 1;
-
-        //System.out.println("Digite a data do pedido");
-        //String data = input.next();
-        //System.out.println("Escolha os materiais que pretende adicionar:");
-        //listarMateriais();
-        String mat = "-1";
-        while (!mat.equals("0")) {
-            //System.out.println("Digite a etiqueta do produto que pretende adicionar('0' para terminar):");
-            //String etqMat = input.next();
-            if (materiaisDoPedido.size() == 0 && etqMat.equals("0")) {
-                break;
-            } else if (materiaisDoPedido.size() > 0 && etqMat.equals("0")) {
-                Pedido p = new Pedido(numPedido, data, materiaisDoPedido);
-                break;
-            }
-            boolean dispo = consultarDisponibilidade(etqMat);
-            if (dispo == true) {
-                for (Material m : materiais) {
-                    if (m.getEtiqueta() == etqMat) {
-                        matPed = m;
-                    }
-                }
-                materiaisDoPedido.add(matPed);
-                return "Material adicionado";
-            }
-            /*else {
-                return "Material indiponível";
-            }*/
+    public String registarPedido(String data, ArrayList<Material> materiaisDoPedido) {
+        int numPedido = pedidos.size()+1;
+        if (materiaisDoPedido.size() == 0 || materiaisDoPedido.size()<0) {
+            return "Erro, lista de materiais vazia. Pedido não registado.";
+        } else if (materiaisDoPedido.size() > 0) {
+            Pedido p = new Pedido(numPedido, data, materiaisDoPedido);
+            return "Pedido registado com sucesso.";
         }
-        return "Material indisponivel";
+        else{
+            return "Erro";
+        }
     }
 
 }

@@ -108,9 +108,11 @@ public class GestorTest {
     @DisplayName("Teste Registar pedido")
     public void testRegistarPedido(){
         String data="28/12/2022";
-        String etqMat="CP01";
-        String expected="Material adicionado";
-        assertEquals(expected,g.registarPedidoTest(data,etqMat));
+        ArrayList<Material>materiaisDoPedido = new ArrayList<Material>();
+        Material m = g.materiais.get(1); //DR01
+        materiaisDoPedido.add(m);
+        String expected="Pedido registado com sucesso.";
+        assertEquals(expected,g.registarPedido(data,materiaisDoPedido));
     }
 
 }
