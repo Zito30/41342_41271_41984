@@ -240,4 +240,14 @@ public class Gestor {
 
     }
 
+    public boolean registarPedido(){
+        System.out.println("Escolha os materiais que pretende adicionar");
+        g.listarMateriais();
+        String mat="-1";
+        while(!mat.equals("0")){
+            System.out.println("Digite o id do Produto que pretende adicionar ao pedido: ");
+
+        }
+    }
+
 }
