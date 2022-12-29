@@ -1,16 +1,22 @@
 package Projeto;
 
 import java.util.ArrayList;
+import java.util.Scanner;
+
 
 public class Gestor {
 
-    Gestor g = new Gestor();
+    Scanner input=new Scanner(System.in);
 
-    ArrayList<Pessoa>pessoas;
+    public Gestor(){
+
+    }
+
+    public ArrayList<Pessoa>pessoas=new ArrayList<>();
     int contaPessoasRegistadas=0;
-    ArrayList<Material>materiais;
-    ArrayList<UC>ucs;
-    ArrayList<Pedido>pedidos;
+    public ArrayList<Material>materiais=new ArrayList<>();
+    public ArrayList<UC>ucs=new ArrayList<>();
+    public ArrayList<Pedido>pedidos=new ArrayList<>();
 
     public void criarPessoa(String nome, int cc, int idade) {
 
@@ -34,35 +40,36 @@ public class Gestor {
 
     }
 
-    public void criarMaterial(String nome, String tipo, String cabecalho) {
+    public void criarMaterial(String nome, int tipo, String cabecalho) {
+
 
         //gerar etiqueta
-        String etiqueta = g.emitirEtiquetas(tipo);
+        String etiqueta = emitirEtiquetas(tipo);
 
         Material m = new Material(etiqueta, nome, cabecalho);
         materiais.add(m);
 
     }
 
-    public String emitirEtiquetas(String tipo) {
+    public String emitirEtiquetas(int tipo) {
         int contaDrone=0;
         int contaComputador=0;
         int contaCarro=0;
         String etiqueta="";
 
-        if(tipo=="1"){//Drone
+        if(tipo==1){//Drone
             for(Material m:materiais){
                 if(m.getTipo()==1){contaDrone++;}
             }
             etiqueta = "DR"+contaDrone+1;
         }
-        else if(tipo=="2"){//Computador
+        else if(tipo==2){//Computador
             for(Material m:materiais){
                 if(m.getTipo()==1){contaComputador++;}
             }
             etiqueta = "CP"+contaComputador+1;
         }
-        else if(tipo=="3"){//Carro
+        else if(tipo==3){//Carro
             for(Material m:materiais){
                 if(m.getTipo()==1){contaCarro++;}
             }
@@ -222,22 +229,93 @@ public class Gestor {
         }
     }
 
-    public boolean consultarDisponibilidade(int id) {
-        int flagInUse=0;
-        for(Pedido p:pedidos) {
-            if(p.getId()==id) {
-                if(p.getDataDevolucao()==null){
-                    flagInUse=1;
+    public boolean consultarDisponibilidade(String etiqueta) {
+        int flagInUse = 0;
+        for (Pedido p : pedidos) {
+            for (Material m : p.materiais) {
+                if (m.getEtiqueta().equals(etiqueta)) {
+                    if (p.getDataDevolucao() == null) {
+                        flagInUse = 1;
+                    }
                 }
             }
         }
-        if(flagInUse==0) {
+
+        if (flagInUse == 0) {
             return true;
-        }
-        else {
+        } else {
             return false;
         }
+    }
 
+    public void registarPedido(){
+        ArrayList<Material>materiaisDoPedido = new ArrayList<>();
+        Material matPed = null;
+        int numPedido = pedidos.size()+1;
+
+        System.out.println("Digite a data do pedido");
+        String data = input.next();
+        System.out.println("Escolha os materiais que pretende adicionar:");
+        listarMateriais();
+        String mat="-1";
+        while(!mat.equals("0")) {
+            System.out.println("Digite a etiqueta do produto que pretende adicionar('0' para terminar):");
+            String etqMat = input.next();
+            if (materiaisDoPedido.size() == 0 && etqMat.equals("0")) {
+                break;
+            } else if (materiaisDoPedido.size() > 0 && etqMat.equals("0")) {
+                Pedido p = new Pedido(numPedido, data, materiaisDoPedido);
+                break;
+            }
+            boolean dispo = consultarDisponibilidade(etqMat);
+            if (dispo == true) {
+                for (Material m : materiais) {
+                    if (m.getEtiqueta() == etqMat) {
+                        matPed = m;
+                    }
+                }
+                materiaisDoPedido.add(matPed);
+                System.out.println("Material adicionado");
+            } else {
+                System.out.println("Material indiponível");
+            }
+        }
+    }
+
+    public String registarPedidoTest(String data, String etqMat) {
+        ArrayList<Material> materiaisDoPedido = new ArrayList<>();
+        Material matPed = null;
+        int numPedido = pedidos.size() + 1;
+
+        //System.out.println("Digite a data do pedido");
+        //String data = input.next();
+        //System.out.println("Escolha os materiais que pretende adicionar:");
+        //listarMateriais();
+        String mat = "-1";
+        while (!mat.equals("0")) {
+            //System.out.println("Digite a etiqueta do produto que pretende adicionar('0' para terminar):");
+            //String etqMat = input.next();
+            if (materiaisDoPedido.size() == 0 && etqMat.equals("0")) {
+                break;
+            } else if (materiaisDoPedido.size() > 0 && etqMat.equals("0")) {
+                Pedido p = new Pedido(numPedido, data, materiaisDoPedido);
+                break;
+            }
+            boolean dispo = consultarDisponibilidade(etqMat);
+            if (dispo == true) {
+                for (Material m : materiais) {
+                    if (m.getEtiqueta() == etqMat) {
+                        matPed = m;
+                    }
+                }
+                materiaisDoPedido.add(matPed);
+                return "Material adicionado";
+            }
+            /*else {
+                return "Material indiponível";
+            }*/
+        }
+        return "Material indisponivel";
     }
 
 }

@@ -7,7 +7,7 @@ public class Docente extends Pessoa{
     public ArrayList<UC>ucs=new ArrayList<UC>();
 
     public Docente(int id,String nome,int cc,int idade){
-        super(id,nome,cc,idade);
+        super(nome,cc,idade,id);
 
     }
 
