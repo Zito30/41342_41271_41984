@@ -15,6 +15,7 @@ public class GestorTest {
 
     @BeforeEach
     public void setup() {
+
         Pessoa p= new Pessoa("Vasco",123,21,1);
         g.pessoas.add(p);
         Pessoa p1= new Pessoa("Diogo",124,21,2);
@@ -22,13 +23,11 @@ public class GestorTest {
 
         Material m=new Material("DR01","DJI","DR");
         g.materiais.add(m);
-
         Material m1=new Material("CP01","ASUS","CP");
         g.materiais.add(m1);
 
         UC uc=new UC("Qualidade de Software");
         g.ucs.add(uc);
-
         UC uc1=new UC("Sistemas Operativos");
         g.ucs.add(uc1);
 
@@ -94,7 +93,7 @@ public class GestorTest {
     @Test
     @DisplayName("Teste Remover UCs")
     public void testRemoveUC(){
-        g.removeUC("Qualidade de Software");
+        g.removeUC("Sistemas Operativos");
         assertEquals(1,g.ucs.size());
     }
 

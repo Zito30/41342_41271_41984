@@ -106,6 +106,7 @@ public class Gestor {
                 pessoas.remove(p);
                 System.out.println("Pessoa removida com sucesso.");
                 flagExiste=1;
+                break;
             }
         }
 
@@ -124,6 +125,7 @@ public class Gestor {
                 materiais.remove(m);
                 System.out.println("Material removido com sucesso.");
                 flagExiste=1;
+                break;
             }
         }
 
@@ -143,6 +145,7 @@ public class Gestor {
                 ucs.remove(uc);
                 System.out.println("UC removida com sucesso.");
                 flagExiste=1;
+                break;
             }
         }
 
