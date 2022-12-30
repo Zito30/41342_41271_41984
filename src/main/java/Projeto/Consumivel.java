@@ -5,7 +5,7 @@ public class Consumivel {
     private String nome;
     private int quantidade;
 
-    public Consumivel(int id,String nome, int quantidade){
+    public Consumivel(int id, String nome, int quantidade){
         this.id=id;
         this.nome=nome;
         this.quantidade=quantidade;

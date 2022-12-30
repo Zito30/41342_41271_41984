@@ -42,4 +42,49 @@ public class Material {
     public ArrayList<Consumivel> getConsumiveis() {
         return consumiveis;
     }
+
+    public void adicionarConsumivel(String nome, int quantidade){
+        int idConsumivel = consumiveis.size()+1;
+        int flagExiste=0;
+        for(Consumivel c:consumiveis){
+            if(c.getNome().equals(nome)){
+                flagExiste=1;
+                int existiam=c.getQuantidade();
+                c.setQuantidade(c.getQuantidade()+quantidade);
+                System.out.println("Consumivel adicionado com sucesso.");
+                System.out.println("Existiam: "+existiam+ "e agora existem:"+c.getQuantidade()+" (adicionou "+quantidade+")");
+                break;
+            }
+        }
+
+        if(flagExiste==0){
+            Consumivel c = new Consumivel(idConsumivel,nome,quantidade);
+            consumiveis.add(c);
+        }
+
+    }
+
+    public void removerConsumivel(String nome, int quantidade){
+        int flagExiste=0;
+        for(Consumivel c:consumiveis){
+            if(c.getNome().equals(nome)){
+                flagExiste=1;
+                if(quantidade<=c.getQuantidade()){
+                    c.setQuantidade(c.getQuantidade()-quantidade);
+                    System.out.println("Consumivel removido com sucesso.");
+                }
+                else{
+                    System.out.println("Está a remover mais do que os que existem.");
+                    System.out.println("Existem: "+c.getQuantidade()+ "a tentar remover:"+quantidade);
+                }
+                break;
+            }
+        }
+
+        if(flagExiste==0){
+            System.out.println("Consumível não existe.");
+        }
+
+    }
+
 }
