@@ -112,6 +112,7 @@ public class GestorTest {
         materiaisDoPedido.add(m);
         String expected="Pedido registado com sucesso.";
         assertEquals(expected,g.registarPedido(data,materiaisDoPedido));
+
     }
 
 }
