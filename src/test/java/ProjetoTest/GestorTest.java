@@ -3,7 +3,10 @@ package ProjetoTest;
 import Projeto.*;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 
 import java.util.ArrayList;
 
@@ -35,7 +38,8 @@ public class GestorTest {
         mat.add(m);
         Pedido pedido=new Pedido(1,"27/12/2022",mat);
         g.pedidos.add(pedido);
-
+        Consumivel c=new Consumivel(11,"Asas",4);
+        m.consumiveis.add(c);
     }
     @Test
     @DisplayName("Teste Criar Pessoa")
@@ -114,4 +118,81 @@ public class GestorTest {
         assertEquals(expected,g.registarPedido(data,materiaisDoPedido));
     }
 
+    @ParameterizedTest
+    @DisplayName("Teste Registar Anomalia")
+    @CsvSource(value={"DR01,Comando Estourou,30/12/2022"})
+    public void testRegistarAnomalia(String etiqueta,String descricao,String data){
+        g.registarAnomalia(etiqueta,descricao,data);
+        int expected=1;
+
+        int idMaterial=-1;
+        for(Material m: g.materiais){
+            if(m.getEtiqueta().equals(etiqueta)){
+                idMaterial=g.materiais.indexOf(m);
+
+                assertEquals(expected,g.materiais.get(idMaterial).avarias.size());
+                break;
+            }
+
+        }
+    }
+
+    @ParameterizedTest
+    @DisplayName("Teste AdicionarConsumiveis")
+    @CsvSource(value = {"DR01,Helices,4"})
+    public void testAdicionarConsumivel(String etiqueta,String nome,int quantidade){
+        g.adicionarConsumivel(etiqueta,nome,quantidade);
+
+        int expected=2;
+
+        int idMaterial=-1;
+        for(Material m: g.materiais){
+            if(m.getEtiqueta().equals(etiqueta)) {
+                idMaterial = g.materiais.indexOf(m);
+            }
+                assertEquals(expected,g.materiais.get(idMaterial).consumiveis.size());
+                break;
+            }
+    }
+
+
+    @ParameterizedTest
+    @DisplayName("Teste AdicionarConsumiveis")
+    @CsvSource(value = {"DR01,Asas,1"})
+    public void testRemoverConsumivel(String etiqueta,String nome,int quantidade){
+        g.removerConsumivel(etiqueta,nome,quantidade);
+        int expected=3;
+
+        int idMaterial=-1;
+        int idConsumivel=-1;
+        for(Material m: g.materiais){
+            if(m.getEtiqueta().equals(etiqueta)) {
+                idMaterial = g.materiais.indexOf(m);
+                for(Consumivel c:m.consumiveis){
+                    if(c.getNome().equals(nome)){
+                        idConsumivel=m.consumiveis.indexOf(c);
+                    }
+                }
+            }
+            assertEquals(expected,g.materiais.get(idMaterial).consumiveis.get(idConsumivel).getQuantidade());
+            break;
+        }
+
+    }
+
+
+    @Nested
+    class RepeatedTest{
+
+        @ParameterizedTest
+        @DisplayName("Teste Criar Pessoa")
+        @CsvSource(value={"Ze,147,23","Antonio,258,30","Nuno,369,26"})
+        public void testCriarPessoa(String nome,int cc,int idade){
+            g.criarPessoa(nome,cc,idade);
+            int expected=3;
+
+            assertEquals(expected,g.pessoas.size());
+        }
+
+    }
 }
