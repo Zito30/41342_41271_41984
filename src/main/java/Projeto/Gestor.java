@@ -158,7 +158,7 @@ public class Gestor {
     public String listarPessoas() {
         String listaDePessoas="";
         for(Pessoa p:pessoas) {
-            listaDePessoas+=p.getNome()+"/n";
+            listaDePessoas+=p.getNome()+"\n";
         }
 
         if (listaDePessoas.equals("")){
@@ -341,7 +341,7 @@ public class Gestor {
         for(Material m:materiais){
             if(m.getEtiqueta().equals(etiqueta)) {
                 for(Consumivel c : m.consumiveis){
-                    listaDeConsumiveis+=c.getNome()+"/n";
+                    listaDeConsumiveis+=c.getNome()+"\n";
                 }
                 if (listaDeConsumiveis.equals("")){
                     return "Sem Consumiveis registados";
