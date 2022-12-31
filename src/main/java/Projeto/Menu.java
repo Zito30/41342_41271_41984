@@ -6,7 +6,7 @@ public class Menu {
 
     public static void mainMenu() {
 
-        System.out.println("-------------Bem vindo á biblioteca UPT-------------");
+        System.out.println("-------------Laboratorio Eng.Infomática UPT-------------");
         System.out.println("                 1.Menu Inserir ");
         System.out.println("                 2.Menu Eliminar");
         System.out.println("                 3.Menu Listar");
@@ -90,7 +90,7 @@ public class Menu {
                                 System.out.println("Idade:");
                                 int idade = input.nextInt();
                                 g.criarPessoa(nome, cc, idade);
-                            }
+                                }
                             break;
 
                             case 2: {//Inserir UC
@@ -248,9 +248,10 @@ public class Menu {
                     while (op < 0 || op > 6);
 
                     while (op != 0) {
+
                         switch (op) {
                             case 1: {//Listar Pessoa
-                                g.listarPessoas();
+                                System.out.println(g.listarPessoas());
                             }
                             break;
 
@@ -310,14 +311,14 @@ public class Menu {
                                 g.listarConsumiveisDeUmMaterial(etiqueta);
                             }
                             break;
-                            case 6: {//retroceder ao menu inicial
-                                mainMenu();
-                            }
-                            break;
+
                         }
-
-
-                        mainMenu();
+                        menuListar();
+                        do {
+                            System.out.println("Digite opção: ");
+                            op = input.nextInt();
+                        }
+                        while (op < 0 || op > 5);
                     }
 
 

@@ -1,20 +1,7 @@
 package Projeto;
 
-
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Scanner;
-
-
-import java.io.IOException;
-import com.opencsv.CSVReader;
-import com.opencsv.CSVWriter;
-import com.opencsv.CSVReaderBuilder;
-import com.opencsv.exceptions.CsvException;
-import java.io.Reader;
-import java.io.Writer;
-import java.nio.file.Files;
-import java.nio.file.Paths;
 
 
 public class Gestor {
@@ -31,28 +18,6 @@ public class Gestor {
     public ArrayList<UC>ucs=new ArrayList<>();
     public ArrayList<Pedido>pedidos=new ArrayList<>();
 
-    public void escrever(String []str, String nomeCsv) throws IOException, CsvException {
-        List<String[]> linhas = new ArrayList<>();
-        linhas.add(str);
-        Writer escritor = Files.newBufferedWriter(Paths.get(nomeCsv + ".cvs"));
-        CSVWriter csvEscritor = new CSVWriter(escritor);
-        csvEscritor.writeAll(linhas);
-        csvEscritor.flush();
-        escritor.close();
-    }
-
-    public void lerCvs(String csvNome) throws IOException, CsvException {
-       Reader leitor = Files.newBufferedReader(Paths.get(csvNome+".csv"));
-       CSVReader csvLeitor = new CSVReaderBuilder(leitor).withSkipLines(1).build();
-
-       List<String[]> tab = csvLeitor.readAll();
-       for (String[] col : tab)
-           System.out.println(
-                            " "+ col[0] +
-                            " "+ col[1] +
-                            " "+ col[2] +
-                            " "+ col[3]);
-    }
     public void criarPessoa(String nome, int cc, int idade) {
 
         int flagExiste=0;
@@ -193,7 +158,7 @@ public class Gestor {
     public String listarPessoas() {
         String listaDePessoas="";
         for(Pessoa p:pessoas) {
-            listaDePessoas+=p.getNome()+"/n";
+            listaDePessoas+=p.getNome()+"\n";
         }
 
         if (listaDePessoas.equals("")){
@@ -267,6 +232,25 @@ public class Gestor {
         }
     }
 
+    public String listarAnomaliasDeUmMaterial(String etiqueta) {
+        String listaDeAnomalias="";
+        for(Material m:materiais) {
+            if(m.getEtiqueta().equals(etiqueta)){
+                listaDeAnomalias+=m.getEtiqueta()+" "+m.getNome()+"\n";
+                for (Avaria a : m.avarias) {
+                    listaDeAnomalias+=a.getId()+" "+a.getDescricao()+" "+a.getDataAvaria()+"\n";
+                }
+            }
+        }
+        if(listaDeAnomalias==""){
+            return "Não existem anomalias";
+        }
+        else{
+            return listaDeAnomalias;
+        }
+
+    }
+
     public boolean consultarDisponibilidade(String etiqueta) {
         int flagInUse = 0;
         for (Pedido p : pedidos) {
@@ -286,42 +270,6 @@ public class Gestor {
         }
     }
 
-    /*
-    public void registarPedido(){
-        ArrayList<Material>materiaisDoPedido = new ArrayList<>();
-        Material matPed = null;
-        int numPedido = pedidos.size()+1;
-
-        System.out.println("Digite a data do pedido");
-        String data = input.next();
-        System.out.println("Escolha os materiais que pretende adicionar:");
-        listarMateriais();
-        String mat="-1";
-        while(!mat.equals("0")) {
-            System.out.println("Digite a etiqueta do produto que pretende adicionar('0' para terminar):");
-            String etqMat = input.next();
-            if (materiaisDoPedido.size() == 0 && etqMat.equals("0")) {
-                break;
-            } else if (materiaisDoPedido.size() > 0 && etqMat.equals("0")) {
-                Pedido p = new Pedido(numPedido, data, materiaisDoPedido);
-                break;
-            }
-            boolean dispo = consultarDisponibilidade(etqMat);
-            if (dispo == true) {
-                for (Material m : materiais) {
-                    if (m.getEtiqueta() == etqMat) {
-                        matPed = m;
-                    }
-                }
-                materiaisDoPedido.add(matPed);
-                System.out.println("Material adicionado");
-            } else {
-                System.out.println("Material indiponível");
-            }
-        }
-    }
-    */
-
     public String registarPedido(String data, ArrayList<Material> materiaisDoPedido) {
         int numPedido = pedidos.size()+1;
         if (materiaisDoPedido.size() == 0 || materiaisDoPedido.size()<0) {
@@ -334,4 +282,94 @@ public class Gestor {
             return "Erro";
         }
     }
+
+    public void registarAnomalia(String etiqueta,String descricao, String dataDaAvaria){
+        int flagExiste=0;
+
+        for(Material m:materiais) {
+            if(m.getEtiqueta().equals(etiqueta)) {
+                flagExiste=1;
+                int numAvaria = m.avarias.size()+1;
+                Avaria a = new Avaria(numAvaria,descricao,dataDaAvaria);
+                m.avarias.add(a);
+                break;
+            }
+        }
+
+        if(flagExiste==0){
+            System.out.println("Material não existe.");
+        }
+        else {
+            System.out.println("Avaria registada com sucesso");
+        }
+
+    }
+
+    public void adicionarConsumivel(String etiqueta,String nome, int quantidade){
+        int flagExiste=0;
+        for(Material m:materiais){
+            if(m.getEtiqueta().equals(etiqueta)) {
+                flagExiste=1;
+                m.adicionarConsumivel(nome, quantidade);
+                break;
+            }
+        }
+
+        if(flagExiste==0){
+            System.out.println("Material não existe.");
+        }
+
+    }
+
+    public void removerConsumivel(String etiqueta, String nome, int quantidade){
+        int flagExiste=0;
+        for(Material m:materiais){
+            if(m.getEtiqueta().equals(etiqueta)) {
+                flagExiste=1;
+                m.removerConsumivel(nome, quantidade);
+                break;
+            }
+        }
+
+        if(flagExiste==0){
+            System.out.println("Material não existe.");
+        }
+    }
+
+    public String listarConsumiveisDeUmMaterial(String etiqueta){
+        String listaDeConsumiveis="";
+        for(Material m:materiais){
+            if(m.getEtiqueta().equals(etiqueta)) {
+                for(Consumivel c : m.consumiveis){
+                    listaDeConsumiveis+=c.getNome()+"\n";
+                }
+                if (listaDeConsumiveis.equals("")){
+                    return "Sem Consumiveis registados";
+                }
+                else{
+                    return listaDeConsumiveis;
+                }
+            }
+        }
+
+        return "Material não existe";
+
+    }
+
+    public String listarAnomalias(){
+        String listaDeAnomalias="";
+        for(Material m:materiais){
+            listaDeAnomalias+=m.getEtiqueta()+" "+m.getNome()+"\n";
+            for(Avaria a:m.avarias){
+                listaDeAnomalias+=a.getId()+" "+a.getDescricao()+""+a.getDataAvaria()+"\n";
+            }
+        }
+        if(listaDeAnomalias==""){
+            return "Não existem anomalias";
+        }
+        else{
+            return listaDeAnomalias;
+        }
+    }
+
 }
