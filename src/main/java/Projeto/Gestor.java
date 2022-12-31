@@ -235,20 +235,20 @@ public class Gestor {
     public String listarAnomaliasDeUmMaterial(String etiqueta) {
         String listaDeAnomalias="";
         for(Material m:materiais) {
-            if(m.getEtiqueta()==etiqueta){
-                for(Avaria a:m.avarias){
-                    listaDeAnomalias+=a.getDescricao()+" "+a.getDataAvaria()+"/n";
+            if(m.getEtiqueta().equals(etiqueta)){
+                listaDeAnomalias+=m.getEtiqueta()+" "+m.getNome()+"\n";
+                for (Avaria a : m.avarias) {
+                    listaDeAnomalias+=a.getId()+" "+a.getDescricao()+" "+a.getDataAvaria()+"\n";
                 }
-                break;
             }
         }
-
-        if (listaDeAnomalias.equals("")){
-            return "Sem Anomalias registadas";
+        if(listaDeAnomalias==""){
+            return "Não existem anomalias";
         }
         else{
             return listaDeAnomalias;
         }
+
     }
 
     public boolean consultarDisponibilidade(String etiqueta) {
@@ -333,6 +333,42 @@ public class Gestor {
 
         if(flagExiste==0){
             System.out.println("Material não existe.");
+        }
+    }
+
+    public String listarConsumiveisDeUmMaterial(String etiqueta){
+        String listaDeConsumiveis="";
+        for(Material m:materiais){
+            if(m.getEtiqueta().equals(etiqueta)) {
+                for(Consumivel c : m.consumiveis){
+                    listaDeConsumiveis+=c.getNome()+"/n";
+                }
+                if (listaDeConsumiveis.equals("")){
+                    return "Sem Consumiveis registados";
+                }
+                else{
+                    return listaDeConsumiveis;
+                }
+            }
+        }
+
+        return "Material não existe";
+
+    }
+
+    public String listarAnomalias(){
+        String listaDeAnomalias="";
+        for(Material m:materiais){
+            listaDeAnomalias+=m.getEtiqueta()+" "+m.getNome()+"\n";
+            for(Avaria a:m.avarias){
+                listaDeAnomalias+=a.getId()+" "+a.getDescricao()+""+a.getDataAvaria()+"\n";
+            }
+        }
+        if(listaDeAnomalias==""){
+            return "Não existem anomalias";
+        }
+        else{
+            return listaDeAnomalias;
         }
     }
 
