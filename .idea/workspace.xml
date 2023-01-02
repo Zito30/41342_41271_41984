@@ -4,10 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5882ca47-68bc-4030-980a-156285bbeac1" name="Changes" comment="Acesso a base de dados">
+    <list default="true" id="5882ca47-68bc-4030-980a-156285bbeac1" name="Changes" comment="MENU VERSAO 1">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Projeto/Gestor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Projeto/Gestor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Projeto/Menu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Projeto/Menu.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -32,9 +32,6 @@
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
-  <component name="ProblemsViewState">
-    <option name="selectedTabId" value="CurrentFile" />
-  </component>
   <component name="ProjectId" id="2IV8wz6pc6jPOv3DgFtWD7BzO9d" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <ConfirmationsSetting value="1" id="Add" />
@@ -48,19 +45,18 @@
     &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;jdk.selected.JAVA_MODULE&quot;: &quot;17&quot;,
     &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;
+    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;
   }
 }</component>
   <component name="RunManager">
-    <configuration name="App" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="org.example.App" />
+    <configuration name="Interface_Menu_Inicial" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="Projeto.Interface_Menu_Inicial" />
       <module name="QS_41342_41271_41984" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="org.example.*" />
+          <option name="PATTERN" value="Projeto.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -68,9 +64,86 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="Menu" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="Projeto.Menu" />
+      <module name="QS_41342_41271_41984" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="Projeto.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="GestorTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="QS_41342_41271_41984" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="ProjetoTest.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="ProjetoTest" />
+      <option name="MAIN_CLASS_NAME" value="ProjetoTest.GestorTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="GestorTest.testCriarPessoa" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="QS_41342_41271_41984" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="ProjetoTest.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="ProjetoTest" />
+      <option name="MAIN_CLASS_NAME" value="ProjetoTest.GestorTest" />
+      <option name="METHOD_NAME" value="testCriarPessoa" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="GestorTest.testRemovePessoa" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="QS_41342_41271_41984" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="ProjetoTest.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="ProjetoTest" />
+      <option name="MAIN_CLASS_NAME" value="ProjetoTest.GestorTest" />
+      <option name="METHOD_NAME" value="testRemovePessoa" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="JetRunConfigurationType">
+      <module name="41342_41271_41984" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType">
+      <module name="41342_41271_41984" />
+      <option name="filePath" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.App" />
+        <item itemvalue="JUnit.GestorTest" />
+        <item itemvalue="Application.Menu" />
+        <item itemvalue="Application.Interface_Menu_Inicial" />
+        <item itemvalue="JUnit.GestorTest.testRemovePessoa" />
+        <item itemvalue="JUnit.GestorTest.testCriarPessoa" />
       </list>
     </recent_temporary>
   </component>
@@ -83,6 +156,42 @@
       <option name="presentableId" value="Default" />
       <updated>1670255635203</updated>
     </task>
+    <task id="LOCAL-00001" summary="Testes V1">
+      <created>1672308763265</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1672308763265</updated>
+    </task>
+    <task id="LOCAL-00002" summary="Testes V2">
+      <created>1672311544262</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1672311544262</updated>
+    </task>
+    <task id="LOCAL-00003" summary="Testes V3">
+      <created>1672412152486</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1672412152486</updated>
+    </task>
+    <task id="LOCAL-00004" summary="Testes V3">
+      <created>1672422462207</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1672422462207</updated>
+    </task>
+    <task id="LOCAL-00005" summary="MENU VERSAO 1">
+      <created>1672503496712</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1672503496712</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -91,17 +200,12 @@
         <entry key="MAIN">
           <value>
             <State>
-              <option name="CUSTOM_BOOLEAN_PROPERTIES">
-                <map>
-                  <entry key="Show.Git.Branches" value="true" />
-                </map>
-              </option>
               <option name="FILTERS">
                 <map>
                   <entry key="branch">
                     <value>
                       <list>
-                        <option value="origin/Leitura_de_arquivos" />
+                        <option value="Testes_Versao1" />
                       </list>
                     </value>
                   </entry>
@@ -112,5 +216,12 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Testes V1" />
+    <MESSAGE value="Testes V2" />
+    <MESSAGE value="Testes V3" />
+    <MESSAGE value="MENU VERSAO 1" />
+    <option name="LAST_COMMIT_MESSAGE" value="MENU VERSAO 1" />
   </component>
 </project>
