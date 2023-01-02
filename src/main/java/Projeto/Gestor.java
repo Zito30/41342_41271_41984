@@ -18,12 +18,12 @@ public class Gestor {
     public ArrayList<UC>ucs=new ArrayList<>();
     public ArrayList<Pedido>pedidos=new ArrayList<>();
 
-    public void criarPessoa(String nome, int cc, int idade) {
+    public void criarPessoa(String nome, String cc, int idade) {
 
         int flagExiste=0;
 
         for(Pessoa p1:pessoas){
-            if (p1.getCc() == cc) {
+            if (p1.getCc().equals(cc)) {
                 System.out.println("A Pessoa já existe.");
                 flagExiste=1;
             }
@@ -46,7 +46,7 @@ public class Gestor {
         //gerar etiqueta
         String etiqueta = emitirEtiquetas(tipo);
 
-        Material m = new Material(etiqueta, nome, cabecalho);
+        Material m = new Material(etiqueta, nome, cabecalho,tipo);
         materiais.add(m);
 
     }
@@ -158,7 +158,7 @@ public class Gestor {
     public String listarPessoas() {
         String listaDePessoas="";
         for(Pessoa p:pessoas) {
-            listaDePessoas+=p.getNome()+"\n";
+            listaDePessoas+=p.getId()+" "+p.getNome()+"\n";
         }
 
         if (listaDePessoas.equals("")){
@@ -172,7 +172,7 @@ public class Gestor {
     public String listarMateriais() {
         String listaDeMateriais="";
         for(Material m:materiais) {
-            listaDeMateriais+=m.getEtiqueta()+" - "+m.getNome()+"/n";
+            listaDeMateriais+=m.getEtiqueta()+" - "+m.getNome()+"\n";
         }
 
         if (listaDeMateriais.equals("")){
@@ -191,26 +191,26 @@ public class Gestor {
         if(tipo==1){//Drone
             tipoDeMaterial="Drones";
             for(Material m:materiais){
-                if(m.getTipo()==1){listaDeMateriais+=m.getEtiqueta()+" - "+m.getNome()+"/n";}
+                if(m.getTipo()==1){listaDeMateriais+=m.getEtiqueta()+" - "+m.getNome()+"\n";}
             }
         }
         else if(tipo==2){//Computador
             tipoDeMaterial="Computadores";
             for(Material m:materiais){
-                if(m.getTipo()==2){listaDeMateriais+=m.getEtiqueta()+" - "+m.getNome()+"/n";}
+                if(m.getTipo()==2){listaDeMateriais+=m.getEtiqueta()+" - "+m.getNome()+"\n";}
             }
         }
         else if(tipo==3){//Carro
             tipoDeMaterial="Carros";
             for(Material m:materiais){
                 if(m.getTipo()==3){
-                    listaDeMateriais+=m.getEtiqueta()+" - "+m.getNome()+"/n";
+                    listaDeMateriais+=m.getEtiqueta()+" - "+m.getNome()+"\n";
                 }
             }
         }
 
         if (listaDeMateriais.equals("")){
-            return "Sem "+tipoDeMaterial+"registados.";
+            return "Sem "+tipoDeMaterial+" registados.";
         }
         else{
             return tipoDeMaterial+ "\n" +listaDeMateriais;
@@ -221,7 +221,7 @@ public class Gestor {
     public String listarUCs() {
         String listaDeUCs="";
         for(UC uc:ucs) {
-            listaDeUCs+=uc.getNome()+"/n";
+            listaDeUCs+=uc.getNome()+"\n";
         }
 
         if (listaDeUCs.equals("")){
@@ -370,6 +370,24 @@ public class Gestor {
         else{
             return listaDeAnomalias;
         }
+    }
+
+    public Boolean verificarSePessoaExiste(int id){
+        for(Pessoa p:pessoas){
+            if(id==p.getId()){
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public boolean verificarSeMaterialExiste(String etiqueta){
+        for(Material m:materiais){
+            if(etiqueta.equals(m.getEtiqueta())){
+                return true;
+            }
+        }
+        return false;
     }
 
 }

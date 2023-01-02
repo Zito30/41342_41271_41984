@@ -5,11 +5,11 @@ import java.util.ArrayList;
 public class Pessoa {
     private int id;
     private String nome;
-    private int cc;
+    private String cc;
     private int idade;
     public ArrayList<Pedido>pedidos=new ArrayList<Pedido>();
 
-    public Pessoa(String nome, int cc, int idade, int id) {
+    public Pessoa(String nome, String cc, int idade, int id) {
         this.nome = nome;
         this.cc = cc;
         this.idade = idade;
@@ -24,7 +24,7 @@ public class Pessoa {
         return nome;
     }
 
-    public int getCc() {
+    public String getCc() {
         return cc;
     }
 

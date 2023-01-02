@@ -19,14 +19,14 @@ public class GestorTest {
     @BeforeEach
     public void setup() {
 
-        Pessoa p= new Pessoa("Vasco",123,21,1);
+        Pessoa p= new Pessoa("Vasco","12345678",21,1);
         g.pessoas.add(p);
-        Pessoa p1= new Pessoa("Diogo",124,21,2);
+        Pessoa p1= new Pessoa("Diogo","12345670",21,2);
         g.pessoas.add(p1);
 
-        Material m=new Material("DR01","DJI","DR");
+        Material m=new Material("DR01","DJI","DR",1);
         g.materiais.add(m);
-        Material m1=new Material("CP01","ASUS","CP");
+        Material m1=new Material("CP01","ASUS","CP",2);
         g.materiais.add(m1);
 
         UC uc=new UC("Qualidade de Software");
@@ -45,7 +45,7 @@ public class GestorTest {
     @DisplayName("Teste Criar Pessoa")
     public void testCriarPessoa(){
         String nome="Delsey";
-        int cc=125;
+        String cc="12345671";
         int idade=21;
 
         g.criarPessoa(nome,cc,idade);
@@ -186,8 +186,8 @@ public class GestorTest {
 
         @ParameterizedTest
         @DisplayName("Teste Criar Pessoa")
-        @CsvSource(value={"Ze,147,23","Antonio,258,30","Nuno,369,26"})
-        public void testCriarPessoa(String nome,int cc,int idade){
+        @CsvSource(value={"Ze,01234567,23","Antonio,01234568,30","Nuno,01234569,26"})
+        public void testCriarPessoa(String nome,String cc,int idade){
             g.criarPessoa(nome,cc,idade);
             int expected=3;
 

@@ -6,9 +6,8 @@ public class Docente extends Pessoa{
 
     public ArrayList<UC>ucs=new ArrayList<UC>();
 
-    public Docente(int id,String nome,int cc,int idade){
+    public Docente(int id,String nome,String cc,int idade){
         super(nome,cc,idade,id);
-
     }
 
     public ArrayList<UC> getUcs() {

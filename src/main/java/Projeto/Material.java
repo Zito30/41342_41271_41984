@@ -11,10 +11,11 @@ public class Material {
     public ArrayList<Avaria>avarias=new ArrayList<Avaria>();
     public  ArrayList<Consumivel>consumiveis=new ArrayList<Consumivel>();
 
-    public Material(String etiqueta,String nome,String cabecalho){
+    public Material(String etiqueta,String nome,String cabecalho,int tipo){
         this.etiqueta=etiqueta;
         this.nome=nome;
         this.cabecalho=cabecalho;
+        this.tipo=tipo;
     }
 
     public String getEtiqueta() {
