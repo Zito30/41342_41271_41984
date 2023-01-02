@@ -158,7 +158,7 @@ public class Gestor {
     public String listarPessoas() {
         String listaDePessoas="";
         for(Pessoa p:pessoas) {
-            listaDePessoas+=p.getId()+" "+p.getNome()+"\n";
+            listaDePessoas+=p.getId()+" "+p.getNome()+ "\n";
         }
 
         if (listaDePessoas.equals("")){

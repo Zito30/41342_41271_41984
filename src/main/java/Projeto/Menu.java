@@ -162,7 +162,7 @@ public class Menu {
                                 int idade=-1;
                                 do{
                                     System.out.println("Nome: ");
-                                    nome = input.next();}
+                                    nome = input.nextLine();}
                                 while(nome.equals(""));
                                 do {
                                     System.out.println("Cartão de cidadão (8 digitos): ");
@@ -192,7 +192,7 @@ public class Menu {
                                 String cabecalho="";
                                 do{
                                     System.out.println("Nome: ");
-                                    nome = input.next();}
+                                    nome = input.nextLine();}
                                 while(nome.equals(""));
                                 do{
                                     System.out.println("1-Drone 2-Computador 3-Carro");
@@ -220,7 +220,7 @@ public class Menu {
                                 System.out.println(g.listarMateriais());
                                 do{
                                     System.out.println("Insira a etiqueta do produto: ");
-                                    etiqueta = input.next();}
+                                    etiqueta = input.nextLine();}
                                 while(etiqueta.equals(""));
                                 do{
                                     System.out.println("Descreva o problema: ");
@@ -242,7 +242,7 @@ public class Menu {
                                 System.out.println(g.listarMateriais());
                                 do{
                                     System.out.println("Etiqueta do Material: ");
-                                    etiqueta = input.next();}
+                                    etiqueta = input.nextLine();}
                                 while(etiqueta.equals(""));
                                 do{
                                     System.out.println("Nome do Consumível: ");
@@ -314,7 +314,7 @@ public class Menu {
                                 System.out.println("Lista de Materiais");
                                 g.listarMateriais();
                                 System.out.println("Etiqueta do Material: ");
-                                String etiqueta = input.next();
+                                String etiqueta = input.nextLine();
                                 System.out.println("Lista de Consumiveis");
                                 g.listarConsumiveisDeUmMaterial(etiqueta);
                                 System.out.println("Nome do Consumível: ");
