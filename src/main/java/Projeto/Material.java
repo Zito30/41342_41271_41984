@@ -88,4 +88,16 @@ public class Material {
 
     }
 
+    @Override
+    public String toString() {
+        return "Material{" +
+                "etiqueta='" + etiqueta + '\'' +
+                ", nome='" + nome + '\'' +
+                ", cabecalho='" + cabecalho + '\'' +
+                ", tipo=" + tipo +
+                ", pedidos=" + pedidos +
+                ", avarias=" + avarias +
+                ", consumiveis=" + consumiveis +
+                '}';
+    }
 }

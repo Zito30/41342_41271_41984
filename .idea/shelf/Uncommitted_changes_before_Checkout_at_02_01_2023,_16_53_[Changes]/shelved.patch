@@ -1,0 +1,75 @@
+Index: src/main/java/Projeto/Gestor.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/Projeto/Gestor.java b/src/main/java/Projeto/Gestor.java
+--- a/src/main/java/Projeto/Gestor.java	
++++ b/src/main/java/Projeto/Gestor.java	
+@@ -31,27 +31,18 @@
+     public ArrayList<UC>ucs=new ArrayList<>();
+     public ArrayList<Pedido>pedidos=new ArrayList<>();
+ 
+-    public void escrever(String []str, String nomeCsv) throws IOException, CsvException {
++    public void escreverCsv(String []str, String nomeCsv) throws IOException, CsvException {
+         List<String[]> linhas = new ArrayList<>();
+         linhas.add(str);
+-        Writer escritor = Files.newBufferedWriter(Paths.get(nomeCsv + ".cvs"));
+-        CSVWriter csvEscritor = new CSVWriter(escritor);
++        Writer file = Files.newBufferedWriter(Paths.get(nomeCsv + ".cvs"));
++        CSVWriter csvEscritor = new CSVWriter(file);
+         csvEscritor.writeAll(linhas);
+         csvEscritor.flush();
+-        escritor.close();
++        file.close();
+     }
+ 
+-    public void lerCvs(String csvNome) throws IOException, CsvException {
+-       Reader leitor = Files.newBufferedReader(Paths.get(csvNome+".csv"));
+-       CSVReader csvLeitor = new CSVReaderBuilder(leitor).withSkipLines(1).build();
++    public void lerCvs(String []str, String nomeCsv) throws IOException, CsvException {
+ 
+-       List<String[]> tab = csvLeitor.readAll();
+-       for (String[] col : tab)
+-           System.out.println(
+-                            " "+ col[0] +
+-                            " "+ col[1] +
+-                            " "+ col[2] +
+-                            " "+ col[3]);
+     }
+     public void criarPessoa(String nome, int cc, int idade) {
+ 
+Index: .idea/workspace.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/workspace.xml b/.idea/workspace.xml
+--- a/.idea/workspace.xml	
++++ b/.idea/workspace.xml	
+@@ -4,7 +4,10 @@
+     <option name="autoReloadType" value="SELECTIVE" />
+   </component>
+   <component name="ChangeListManager">
+-    <list default="true" id="5882ca47-68bc-4030-980a-156285bbeac1" name="Changes" comment="MENU VERSAO 1" />
++    <list default="true" id="5882ca47-68bc-4030-980a-156285bbeac1" name="Changes" comment="MENU VERSAO 1">
++      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/main/java/Projeto/Gestor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Projeto/Gestor.java" afterDir="false" />
++    </list>
+     <option name="SHOW_DIALOG" value="false" />
+     <option name="HIGHLIGHT_CONFLICTS" value="true" />
+     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+@@ -27,13 +30,6 @@
+   </component>
+   <component name="MarkdownSettingsMigration">
+     <option name="stateVersion" value="1" />
+-  </component>
+-  <component name="MavenImportPreferences">
+-    <option name="importingSettings">
+-      <MavenImportingSettings>
+-        <option name="workspaceImportEnabled" value="true" />
+-      </MavenImportingSettings>
+-    </option>
+   </component>
+   <component name="ProjectId" id="2IV8wz6pc6jPOv3DgFtWD7BzO9d" />
+   <component name="ProjectLevelVcsManager" settingsEditedManually="true">

@@ -17,4 +17,11 @@ public class UC {
     public ArrayList<Pedido> getPedidos() {
         return pedidos;
     }
+
+    @Override
+    public String toString() {
+        return "UC{" +
+                "nome='" + nome + '\'' +
+                '}';
+    }
 }

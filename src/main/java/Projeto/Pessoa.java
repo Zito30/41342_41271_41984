@@ -35,4 +35,15 @@ public class Pessoa {
     public ArrayList<Pedido> getPedidos() {
         return pedidos;
     }
+
+    @Override
+    public String toString() {
+        return "Pessoa{" +
+                "id=" + id +
+                ", nome='" + nome + '\'' +
+                ", cc='" + cc + '\'' +
+                ", idade=" + idade +
+                ", pedidos=" + pedidos +
+                '}';
+    }
 }

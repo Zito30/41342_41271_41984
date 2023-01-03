@@ -4,18 +4,17 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Menu {
-
+    public static Gestor g = new Gestor();
     public static void mainMenu() {
-
+        g.guarguarTudo();
         System.out.println("-------------Laboratorio Eng.Infomática UPT-------------");
         System.out.println("                 1.Registar Requisição");
-        System.out.println("                 2.Menu Inserir");
-        System.out.println("                 3.Menu Eliminar");
-        System.out.println("                 4.Menu Listar");
+        System.out.println("                 2.Registar Devolução");
+        System.out.println("                 3.Menu Inserir");
+        System.out.println("                 4.Menu Eliminar");
+        System.out.println("                 5.Menu Listar");
         System.out.println("                     0.Sair");
-
     }
-
 
     public static void menuInserir() {
 
@@ -47,6 +46,7 @@ public class Menu {
         System.out.println("3. Listar Material");
         System.out.println("4. Listar Avaria");
         System.out.println("5. Listar Consumivel");
+        System.out.println("6. Lista Pedido");
         System.out.println("0. Retroceder ao Menu Inicial");
 
     }
@@ -54,18 +54,18 @@ public class Menu {
 
     public static void main(String[] args) {
         Scanner input = new Scanner(System.in);
+        Scanner input1 = new Scanner(System.in);
         int res = 0;
 
-        Gestor g = new Gestor();
-
+        g.actualizarDados();
         int op;
-
         mainMenu();
+
         do {
             System.out.println("Digite opção: ");
             op = input.nextInt();
         }
-        while (op < 0 || op > 4);
+        while (op < 0 || op > 5);
 
         while (op != 0) {
 
@@ -143,7 +143,25 @@ public class Menu {
                 }//fim do Case 1 -Registar requisição
                 break;
 
-                case 2: {
+                case 2:{
+                    int id=-1;
+                    String data="";
+                    System.out.println("Pedidos:");
+                    System.out.println(g.listarPedidos());
+                    do{
+                        System.out.println("Id do pedido a devolver: ");
+                        id = input.nextInt();
+                    }while(id<0);
+                    do{
+                        System.out.println("Data de devolução: ");
+                        data = input.nextLine();
+                    }while(data.equals(""));
+                    g.devolverPedido(id,data);
+                    System.out.println("Devolução registada com sucesso.");
+
+                }//fim do Case 2 - Registar requisição
+
+                case 3: {
                     menuInserir();
 
                     do {
@@ -162,11 +180,13 @@ public class Menu {
                                 int idade=-1;
                                 do{
                                     System.out.println("Nome: ");
-                                    nome = input.nextLine();}
+                                    /*input.skip("\\R");*/
+                                    nome = input1.nextLine();
+                                }
                                 while(nome.equals(""));
                                 do {
                                     System.out.println("Cartão de cidadão (8 digitos): ");
-                                    cc = input.nextLine();}
+                                    cc = input1.nextLine();}
                                 while(cc.length()!=8);
                                 do{
                                     System.out.println("Idade:");
@@ -180,7 +200,7 @@ public class Menu {
                                 String nome="";
                                 do{
                                     System.out.println("Nome: ");
-                                    nome = input.nextLine();}
+                                    nome = input1.nextLine();}
                                 while(nome.equals(""));
                                 g.criarUC(nome);
                             }
@@ -192,7 +212,7 @@ public class Menu {
                                 String cabecalho="";
                                 do{
                                     System.out.println("Nome: ");
-                                    nome = input.nextLine();}
+                                    nome = input1.nextLine();}
                                 while(nome.equals(""));
                                 do{
                                     System.out.println("1-Drone 2-Computador 3-Carro");
@@ -220,15 +240,15 @@ public class Menu {
                                 System.out.println(g.listarMateriais());
                                 do{
                                     System.out.println("Insira a etiqueta do produto: ");
-                                    etiqueta = input.nextLine();}
+                                    etiqueta = input1.nextLine();}
                                 while(etiqueta.equals(""));
                                 do{
                                     System.out.println("Descreva o problema: ");
-                                    descricao = input.nextLine();}
+                                    descricao = input1.nextLine();}
                                 while(descricao.equals(""));
                                 do {
                                     System.out.println("Data: ");
-                                    dataDaAvaria = input.nextLine();}
+                                    dataDaAvaria = input1.nextLine();}
                                 while(dataDaAvaria.equals(""));
                                 g.registarAnomalia(etiqueta, descricao, dataDaAvaria);
                             }
@@ -242,11 +262,11 @@ public class Menu {
                                 System.out.println(g.listarMateriais());
                                 do{
                                     System.out.println("Etiqueta do Material: ");
-                                    etiqueta = input.nextLine();}
+                                    etiqueta = input1.nextLine();}
                                 while(etiqueta.equals(""));
                                 do{
                                     System.out.println("Nome do Consumível: ");
-                                    nome = input.nextLine();}
+                                    nome = input1.nextLine();}
                                 while(nome.equals(""));
                                 do{
                                     System.out.println("Quantidade (1-100): ");
@@ -264,10 +284,10 @@ public class Menu {
                         while (op < 0 || op > 5);
                     }//fim do while OPCAO INSERIR
 
-                }//fim do case 2 - Registar
+                }//fim do case 3 - Registar
                 break;
 
-                case 3: {
+                case 4: {
                     menuEliminar();
 
                     do {
@@ -291,7 +311,7 @@ public class Menu {
                                 System.out.println("Lista de UCs:");
                                 g.listarUCs();
                                 System.out.println("Nome da UC: ");
-                                String nome = input.nextLine();
+                                String nome = input1.nextLine();
                                 g.removeUC(nome);
                             }
                             break;
@@ -300,7 +320,7 @@ public class Menu {
                                 System.out.println("Lista de Materiais");
                                 g.listarMateriais();
                                 System.out.println("Etiqueta: ");
-                                String etiqueta = input.nextLine();
+                                String etiqueta = input1.nextLine();
                                 g.removeMaterial(etiqueta);
                             }
                             break;
@@ -314,11 +334,11 @@ public class Menu {
                                 System.out.println("Lista de Materiais");
                                 g.listarMateriais();
                                 System.out.println("Etiqueta do Material: ");
-                                String etiqueta = input.nextLine();
+                                String etiqueta = input1.nextLine();
                                 System.out.println("Lista de Consumiveis");
                                 g.listarConsumiveisDeUmMaterial(etiqueta);
                                 System.out.println("Nome do Consumível: ");
-                                String nome = input.nextLine();
+                                String nome = input1.nextLine();
                                 System.out.println("Quantidade: ");
                                 int quantidade = input.nextInt();
                                 g.removerConsumivel(etiqueta, nome, quantidade);
@@ -334,17 +354,17 @@ public class Menu {
                     }
                 mainMenu();
 
-                }//fim do case 2 - Eliminar
+                }//fim do case 4 - Eliminar
                 break;
 
-                case 4: {
+                case 5: {
                     menuListar();
 
                     do {
                         System.out.println("Digite opção: ");
                         op = input.nextInt();
                     }
-                    while (op < 0 || op > 5);
+                    while (op < 0 || op > 6);
 
                     while (op != 0) {
 
@@ -395,7 +415,7 @@ public class Menu {
                                     System.out.println(g.listarMateriais());
                                     System.out.println("Material(etiqueta): ");
                                     do{
-                                        etiqueta = input.nextLine();
+                                        etiqueta = input1.nextLine();
                                     }while (etiqueta.equals(""));
                                     System.out.println(g.listarAnomaliasDeUmMaterial(etiqueta));
                                 }
@@ -406,8 +426,14 @@ public class Menu {
                                 System.out.println("Lista de Materiais");
                                 System.out.println(g.listarMateriais());
                                 System.out.println("Etiqueta do Material: ");
-                                String etiqueta = input.nextLine();
+                                String etiqueta = input1.nextLine();
                                 System.out.println(g.listarConsumiveisDeUmMaterial(etiqueta));
+                            }
+                            break;
+
+                            case 6:{//Lista Pedidos
+                                System.out.println("Lista de Pedidos");
+                                System.out.println(g.listarPedidos());
                             }
                             break;
 
@@ -420,8 +446,7 @@ public class Menu {
                         while (op < 0 || op > 5);
                     }
 
-
-                }//fim do case 3 - Listagens
+                }//fim do case 5 - Listagens
                 break;
 
                 default:System.out.println("ERRO!");
@@ -431,9 +456,8 @@ public class Menu {
             do {
                 op = input.nextInt();
             }
-            while (op < 0 || op > 4);
-
-
+            while (op < 0 || op > 5);
         }//FIM WHILE PRINCIPAL
+
     }
 }

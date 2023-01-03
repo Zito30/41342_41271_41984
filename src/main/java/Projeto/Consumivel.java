@@ -27,5 +27,10 @@ public class Consumivel {
         this.quantidade = quantidade;
     }
 
-
+    @Override
+    public String toString() {
+        return "Consumivel{" +
+                "id=" + id +
+                '}';
+    }
 }

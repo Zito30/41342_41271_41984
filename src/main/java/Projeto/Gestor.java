@@ -1,59 +1,41 @@
 package Projeto;
 
-
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Scanner;
 
-
-import java.io.IOException;
-import com.opencsv.CSVReader;
-import com.opencsv.CSVWriter;
-import com.opencsv.CSVReaderBuilder;
-import com.opencsv.exceptions.CsvException;
-import java.io.Reader;
-import java.io.Writer;
-import java.nio.file.Files;
-import java.nio.file.Paths;
-
-
 public class Gestor {
-
-    Scanner input=new Scanner(System.in);
-
-    public Gestor(){
-
-    }
-
     public ArrayList<Pessoa>pessoas=new ArrayList<>();
     int contaPessoasRegistadas=0;
     public ArrayList<Material>materiais=new ArrayList<>();
     public ArrayList<UC>ucs=new ArrayList<>();
     public ArrayList<Pedido>pedidos=new ArrayList<>();
 
-    public void escrever(String []str, String nomeCsv) throws IOException, CsvException {
-        List<String[]> linhas = new ArrayList<>();
-        linhas.add(str);
-        Writer escritor = Files.newBufferedWriter(Paths.get(nomeCsv + ".cvs"));
-        CSVWriter csvEscritor = new CSVWriter(escritor);
-        csvEscritor.writeAll(linhas);
-        csvEscritor.flush();
-        escritor.close();
+    Scanner input=new Scanner(System.in);
+    FileCsv file = new FileCsv();
+
+
+    public Gestor(){
+
     }
 
-    public void lerCvs(String csvNome) throws IOException, CsvException {
-       Reader leitor = Files.newBufferedReader(Paths.get(csvNome+".csv"));
-       CSVReader csvLeitor = new CSVReaderBuilder(leitor).withSkipLines(1).build();
+    public void listarRequisiloes(){
 
-       List<String[]> tab = csvLeitor.readAll();
-       for (String[] col : tab)
-           System.out.println(
-                            " "+ col[0] +
-                            " "+ col[1] +
-                            " "+ col[2] +
-                            " "+ col[3]);
     }
-    public void criarPessoa(String nome, String cc, int idade) {
+    public void guarguarTudo(){
+        file.guardarPessoa(pessoas);
+        file.guardarMaterial(materiais);
+        file.guardarUc(ucs);
+        file.guardarPedido(pedidos);
+    }
+    public void actualizarDados(){
+        file.carregarCsv("pessoa");
+        file.carregarCsv("material");
+        file.carregarCsv("avaria");
+        file.carregarCsv("uc");
+        file.carregarCsv("consumivel");
+        file.carregarCsv("pedido");
+    }
+    public void criarPessoa(String nome, String cc, int idade){
 
         int flagExiste=0;
 
@@ -63,7 +45,6 @@ public class Gestor {
                 flagExiste=1;
             }
         }
-
         if (flagExiste==0){
             PessoaFactory pf = new PessoaFactory();
             int id=contaPessoasRegistadas+1;
@@ -72,7 +53,6 @@ public class Gestor {
             contaPessoasRegistadas++;
             System.out.println("Pessoa adicionada com sucesso.");
         }
-
     }
 
     public void criarMaterial(String nome, int tipo, String cabecalho) {
@@ -83,6 +63,7 @@ public class Gestor {
 
         Material m = new Material(etiqueta, nome, cabecalho,tipo);
         materiais.add(m);
+        file.guardarMaterial(materiais);
 
     }
 
@@ -127,6 +108,7 @@ public class Gestor {
         if (flagExiste==0){
             UC uc = new UC(nome);
             ucs.add(uc);
+            file.guardarUc(ucs);
             System.out.println("UC adicionada com sucesso.");
         }
 
@@ -187,12 +169,11 @@ public class Gestor {
         if(flagExiste==0){
             System.out.println("UC não existe.");
         }
-
     }
 
     public String listarPessoas() {
         String listaDePessoas="";
-        for(Pessoa p:pessoas) {
+        for(Pessoa p: pessoas) {
             listaDePessoas+=p.getId()+" "+p.getNome()+ "\n";
         }
 
@@ -311,6 +292,7 @@ public class Gestor {
             return "Erro, lista de materiais vazia. Pedido não registado.";
         } else if (materiaisDoPedido.size() > 0) {
             Pedido p = new Pedido(numPedido, data, materiaisDoPedido);
+            pedidos.add(p);
             return "Pedido registado com sucesso.";
         }
         else{
@@ -396,7 +378,7 @@ public class Gestor {
         for(Material m:materiais){
             listaDeAnomalias+=m.getEtiqueta()+" "+m.getNome()+"\n";
             for(Avaria a:m.avarias){
-                listaDeAnomalias+=a.getId()+" "+a.getDescricao()+""+a.getDataAvaria()+"\n";
+                listaDeAnomalias+=a.getId()+" "+a.getDescricao()+" "+a.getDataAvaria()+"\n";
             }
         }
         if(listaDeAnomalias==""){
@@ -423,6 +405,35 @@ public class Gestor {
             }
         }
         return false;
+    }
+
+    public void devolverPedido(int id,String data){
+        int flagExiste=0;
+        for(Pedido p:pedidos){
+            if(p.getId()==id){
+                flagExiste=1;
+                if(p.getDataDevolucao().equals(null)){
+                    p.setDataDevolucao(data);
+                }
+                else{System.out.println("O Pedido já foi devolvido.");}
+            }
+        }
+        if(flagExiste==0){
+            System.out.println("O pedido não existe.");
+        }
+    }
+
+    public String listarPedidos(){
+        String listaDePedidos="";
+        for(Pedido p:pedidos){
+            listaDePedidos+=p.getId()+" "+p.getDataPedido()+" "+p.getDataDevolucao() + "\n";
+        }
+        if(listaDePedidos==""){
+            return "Não existem pedidos";
+        }
+        else{
+            return listaDePedidos;
+        }
     }
 
 }

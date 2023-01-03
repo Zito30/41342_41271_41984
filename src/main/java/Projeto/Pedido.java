@@ -33,4 +33,16 @@ public class Pedido {
     public void setMateriais(ArrayList<Material> materiais) {
         this.materiais = materiais;
     }
+
+    public Pedido setDataDevolucao(String dataDevolucao) {
+        this.dataDevolucao = dataDevolucao;
+        return this;
+    }
+
+    @Override
+    public String toString() {
+        return "Pedido{" +
+                "id=" + id +
+                '}';
+    }
 }
