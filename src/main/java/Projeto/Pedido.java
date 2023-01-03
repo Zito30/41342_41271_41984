@@ -3,20 +3,22 @@ package Projeto;
 import java.util.ArrayList;
 
 public class Pedido {
-    private int id;
+    private int idPedido;
+    private int idPessoa;
     private String dataPedido;
-    private String dataDevolucao;
+    private String dataDevolucao="";
     public ArrayList<Material>materiais=new ArrayList<Material>();
 
-    public Pedido(int id,String dataPedido, ArrayList<Material>materiais){
-        this.id=id;
+    public Pedido(int idPessoa,int idPedido,String dataPedido,ArrayList<Material>materiais){
+        this.idPedido=idPedido;
         this.dataPedido=dataPedido;
         this.materiais = materiais;
     }
 
     public int getId() {
-        return id;
+        return idPedido;
     }
+    public int getPessoa(){return idPessoa;}
 
     public String getDataPedido() {
         return dataPedido;
@@ -42,7 +44,7 @@ public class Pedido {
     @Override
     public String toString() {
         return "Pedido{" +
-                "id=" + id +
+                "id=" + idPedido +
                 '}';
     }
 }

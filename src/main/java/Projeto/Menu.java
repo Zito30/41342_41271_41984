@@ -33,8 +33,7 @@ public class Menu {
         System.out.println("1. Eliminar Pessoa");
         System.out.println("2. Eliminar UC");
         System.out.println("3. Eliminar Material");
-        System.out.println("4. Eliminar Avaria");
-        System.out.println("5. Eliminar Consumivel");
+        System.out.println("4. Eliminar Consumivel");
         System.out.println("0. Retroceder ao Menu Inicial");
 
     }
@@ -81,6 +80,7 @@ public class Menu {
                     int matExisteNaLista=0;
                     String nome="";
                     String materiais="";
+                    String data="";
 
                     System.out.println("Lista de Pessoas:");
                     System.out.println(g.listarPessoas());
@@ -94,12 +94,17 @@ public class Menu {
                         existeP = g.verificarSePessoaExiste(id);
                     }while(existeP==false);
 
+                    do{
+                        System.out.println("Qual a data:");
+                        data = input1.nextLine();
+                    }while(data.equals(""));
+
                     System.out.println("Lista dos materiais");
                     System.out.println(g.listarMateriais());
 
                     do{
                         System.out.println("Insira a etiqueta do material a inserir (0-para terminar): ");
-                        mat = input.nextLine();
+                        mat = input1.nextLine();
                         if(!mat.equals("0")){
                             existeM=g.verificarSeMaterialExiste(mat);
                         }
@@ -139,6 +144,9 @@ public class Menu {
                             System.out.println("Material não existe. Etiqueta inválida.");
                         }
                     }while(!mat.equals("0"));
+
+                    g.registarPedido(id,data,m);
+                    System.out.println("Pedido registado com sucesso.");
 
                 }//fim do Case 1 -Registar requisição
                 break;
@@ -325,12 +333,7 @@ public class Menu {
                             }
                             break;
 
-                            case 4: {//Remover Avaria
-
-                            }
-                            break;
-
-                            case 5: {//Remover Consumivel
+                            case 4: {//Remover Consumivel
                                 System.out.println("Lista de Materiais");
                                 g.listarMateriais();
                                 System.out.println("Etiqueta do Material: ");
@@ -350,7 +353,7 @@ public class Menu {
                             System.out.println("Digite opção: ");
                             op = input.nextInt();
                         }
-                        while (op < 0 || op > 5);
+                        while (op < 0 || op > 4);
                     }
                 mainMenu();
 

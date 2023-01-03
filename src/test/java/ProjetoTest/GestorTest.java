@@ -36,7 +36,7 @@ public class GestorTest {
 
         ArrayList<Material>mat = new ArrayList<>();
         mat.add(m);
-        Pedido pedido=new Pedido(1,"27/12/2022",mat);
+        Pedido pedido=new Pedido(1,1,"27/12/2022",mat);
         g.pedidos.add(pedido);
         Consumivel c=new Consumivel(11,"Asas",4);
         m.consumiveis.add(c);
@@ -66,7 +66,7 @@ public class GestorTest {
     @Test
     @DisplayName("Teste de emitir etiquetas")
     public void testEmitirEtiquetas(){
-       String expected="DR01";
+       String expected="DR11";
 
        assertEquals(expected,g.emitirEtiquetas(1));
     }
@@ -110,12 +110,13 @@ public class GestorTest {
     @Test
     @DisplayName("Teste Registar pedido")
     public void testRegistarPedido(){
+        int id=1;
         String data="28/12/2022";
         ArrayList<Material>materiaisDoPedido = new ArrayList<Material>();
         Material m = g.materiais.get(1); //DR01
         materiaisDoPedido.add(m);
         String expected="Pedido registado com sucesso.";
-        assertEquals(expected,g.registarPedido(data,materiaisDoPedido));
+        assertEquals(expected,g.registarPedido(id,data,materiaisDoPedido));
     }
 
     @ParameterizedTest
@@ -180,7 +181,38 @@ public class GestorTest {
 
     }
 
+    @Test
+    @DisplayName("Teste Verificar Se Pessoa Existe")
+    public void testVerificarSePessoaExiste(){
 
+        assertTrue(g.verificarSePessoaExiste(1));
+    }
+
+    @Test
+    @DisplayName("Teste Verificar Se Material Existe")
+    public void testVerificarSeMaterialExiste(){
+
+        assertTrue(g.verificarSeMaterialExiste("CP01"));
+    }
+
+    @Test
+    @DisplayName("Teste Devolver Pedido")
+    public void testDevolverPedido(){
+        int id=1;
+        String data="30/12/2022";
+        int idPedido=-1;
+        String expected="30/12/2022";
+        for(Pedido p:g.pedidos){
+            if(id==p.getId()){
+                idPedido=g.pedidos.indexOf(p);
+                g.devolverPedido(id,data);
+            }
+            assertEquals(expected,g.pedidos.get(idPedido).getDataDevolucao());
+            break;
+        }
+
+
+    }
     @Nested
     class RepeatedTest{
 

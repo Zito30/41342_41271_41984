@@ -11,7 +11,7 @@ public class Gestor {
     public ArrayList<Pedido>pedidos=new ArrayList<>();
 
     Scanner input=new Scanner(System.in);
-    FileCsv file = new FileCsv();
+    public static FileCsv file = new FileCsv();
 
 
     public Gestor(){
@@ -286,13 +286,16 @@ public class Gestor {
         }
     }
 
-    public String registarPedido(String data, ArrayList<Material> materiaisDoPedido) {
+    public String registarPedido(int idPessoa, String data, ArrayList<Material> materiaisDoPedido) {
         int numPedido = pedidos.size()+1;
         if (materiaisDoPedido.size() == 0 || materiaisDoPedido.size()<0) {
             return "Erro, lista de materiais vazia. Pedido não registado.";
         } else if (materiaisDoPedido.size() > 0) {
-            Pedido p = new Pedido(numPedido, data, materiaisDoPedido);
+            Pedido p = new Pedido(idPessoa, numPedido, data, materiaisDoPedido);
             pedidos.add(p);
+            for(Material m:materiaisDoPedido){
+                m.adicionarPedido(idPessoa,numPedido,data,materiaisDoPedido);
+            }
             return "Pedido registado com sucesso.";
         }
         else{
@@ -307,8 +310,7 @@ public class Gestor {
             if(m.getEtiqueta().equals(etiqueta)) {
                 flagExiste=1;
                 int numAvaria = m.avarias.size()+1;
-                Avaria a = new Avaria(numAvaria,descricao,dataDaAvaria);
-                m.avarias.add(a);
+                m.adicionarAnomalia(numAvaria,descricao,dataDaAvaria);
                 break;
             }
         }
@@ -337,6 +339,8 @@ public class Gestor {
         }
 
     }
+
+
 
     public void removerConsumivel(String etiqueta, String nome, int quantidade){
         int flagExiste=0;
@@ -412,7 +416,7 @@ public class Gestor {
         for(Pedido p:pedidos){
             if(p.getId()==id){
                 flagExiste=1;
-                if(p.getDataDevolucao().equals(null)){
+                if(p.getDataDevolucao().equals("")){
                     p.setDataDevolucao(data);
                 }
                 else{System.out.println("O Pedido já foi devolvido.");}

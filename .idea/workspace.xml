@@ -5,9 +5,21 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="5882ca47-68bc-4030-980a-156285bbeac1" name="Changes" comment="Menu a funcionar versao final">
-      <change afterPath="$PROJECT_DIR$/src/main/java/FileCsv/pessoa.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_02_01_2023__16_26__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_02_01_2023__16_26__Changes_.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_02_01_2023__16_53__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_02_01_2023__16_53__Changes_.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_29_12_2022__17_29__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_29_12_2022__17_29__Changes_.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_30_12_2022__20_47__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_30_12_2022__20_47__Changes_.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_30_12_2022__20_54__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_30_12_2022__20_54__Changes_.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_02_01_2023__16_10__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_02_01_2023__16_10__Changes_.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/FileCsv/docente.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/FileCsv/material.csv" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/FileCsv/material.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/FileCsv/pessoa.csv" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/FileCsv/pessoa.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/FileCsv/uc.csv" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/FileCsv/uc.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Projeto/Gestor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Projeto/Gestor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Projeto/Material.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Projeto/Material.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Projeto/Menu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Projeto/Menu.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Projeto/Pedido.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Projeto/Pedido.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/ProjetoTest/GestorTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/ProjetoTest/GestorTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -50,7 +62,20 @@
     &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;
   }
 }</component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Application.Menu">
+    <configuration name="Menu" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="Projeto.Menu" />
+      <module name="QS_41342_41271_41984" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="Projeto.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="GestorTest" type="JUnit" factoryName="JUnit" nameIsGenerated="true">
       <module name="QS_41342_41271_41984" />
       <extension name="coverage">
@@ -113,6 +138,7 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.Menu" />
         <item itemvalue="JUnit.GestorTest.testRemovePessoa" />
         <item itemvalue="JUnit.GestorTest.testCriarPessoa" />
       </list>
@@ -185,7 +211,7 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/Projeto/Menu.java</url>
-          <line>177</line>
+          <line>185</line>
           <option name="timeStamp" value="3" />
         </line-breakpoint>
       </breakpoints>

@@ -44,6 +44,7 @@ public class Material {
         return consumiveis;
     }
 
+
     public void adicionarConsumivel(String nome, int quantidade){
         int idConsumivel = consumiveis.size()+1;
         int flagExiste=0;
@@ -87,6 +88,39 @@ public class Material {
         }
 
     }
+
+    public void adicionarPedido(int idPessoa,int id,String data,ArrayList<Material>materiais){
+        int idPedidos = pedidos.size()+1;
+        int flagExiste=0;
+        for(Pedido c:pedidos){
+            if(c.getId()==id){
+                flagExiste=1;
+                break;
+            }
+        }
+
+        if(flagExiste==0){
+            Pedido p=new Pedido(idPessoa, id, data, materiais);
+            pedidos.add(p);
+        }
+    }
+
+    public void adicionarAnomalia(int id, String descricao, String dataDaAvaria){
+        int idAnomalias =avarias.size()+1;
+        int flagExiste=0;
+        for(Avaria a:avarias){
+            if(a.getId()==id){
+                flagExiste=1;
+                break;
+            }
+        }
+
+        if(flagExiste==0){
+            Avaria a=new Avaria(id,descricao,dataDaAvaria);
+            avarias.add(a);
+        }
+    }
+
 
     @Override
     public String toString() {
