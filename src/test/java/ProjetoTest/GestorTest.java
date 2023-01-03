@@ -7,6 +7,7 @@ import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
+import org.junit.jupiter.params.provider.ValueSource;
 
 import java.util.ArrayList;
 
@@ -66,7 +67,7 @@ public class GestorTest {
     @Test
     @DisplayName("Teste de emitir etiquetas")
     public void testEmitirEtiquetas(){
-       String expected="DR01";
+       String expected="DR11";
 
        assertEquals(expected,g.emitirEtiquetas(1));
     }
@@ -118,6 +119,7 @@ public class GestorTest {
         assertEquals(expected,g.registarPedido(data,materiaisDoPedido));
     }
 
+
     @ParameterizedTest
     @DisplayName("Teste Registar Anomalia")
     @CsvSource(value={"DR01,Comando Estourou,30/12/2022"})
@@ -138,7 +140,7 @@ public class GestorTest {
     }
 
     @ParameterizedTest
-    @DisplayName("Teste AdicionarConsumiveis")
+    @DisplayName("Teste Adicionar Consumiveis")
     @CsvSource(value = {"DR01,Helices,4"})
     public void testAdicionarConsumivel(String etiqueta,String nome,int quantidade){
         g.adicionarConsumivel(etiqueta,nome,quantidade);
@@ -155,9 +157,10 @@ public class GestorTest {
             }
     }
 
+    //@Test
 
     @ParameterizedTest
-    @DisplayName("Teste AdicionarConsumiveis")
+    @DisplayName("Teste Remover Consumiveis")
     @CsvSource(value = {"DR01,Asas,1"})
     public void testRemoverConsumivel(String etiqueta,String nome,int quantidade){
         g.removerConsumivel(etiqueta,nome,quantidade);
@@ -178,9 +181,39 @@ public class GestorTest {
             break;
         }
 
+
     }
 
+    @Test
+    @DisplayName("Teste Verificar Se Pessoa Existe")
+    public void testVerificarSePessoaExiste(){
+        assertTrue(g.verificarSePessoaExiste(1));
+    }
 
+    @Test
+    @DisplayName("Teste Verificar Se Material Existe")
+    public void testVerificarSeMaterialExiste(){
+        assertTrue(g.verificarSeMaterialExiste("CP01"));
+    }
+
+    @Test
+    @DisplayName("Teste Devolver Pedido")
+    public void testDevolverPedido(){
+        int id=1;
+        String data="30/12/2022";
+        int idPedido=-1;
+        String expected="30/12/2022";
+        for(Pedido p:g.pedidos){
+            if(id==p.getId()){
+                idPedido=g.pedidos.indexOf(p);
+                g.devolverPedido(id,data);
+            }
+            assertEquals(expected,g.pedidos.get(idPedido).getDataDevolucao());
+            break;
+        }
+
+
+    }
     @Nested
     class RepeatedTest{
 

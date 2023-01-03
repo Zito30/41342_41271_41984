@@ -5,7 +5,7 @@ import java.util.ArrayList;
 public class Pedido {
     private int id;
     private String dataPedido;
-    private String dataDevolucao;
+    private String dataDevolucao="";
     public ArrayList<Material>materiais=new ArrayList<Material>();
 
     public Pedido(int id,String dataPedido, ArrayList<Material>materiais){

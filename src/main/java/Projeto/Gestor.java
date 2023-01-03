@@ -372,4 +372,54 @@ public class Gestor {
         }
     }
 
+<<<<<<< Updated upstream
+=======
+    public Boolean verificarSePessoaExiste(int id){
+        for(Pessoa p:pessoas){
+            if(id==p.getId()){
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public boolean verificarSeMaterialExiste(String etiqueta){
+        for(Material m:materiais){
+            if(etiqueta.equals(m.getEtiqueta())){
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public void devolverPedido(int id,String data){
+        int flagExiste=0;
+        for(Pedido p:pedidos){
+            if(p.getId()==id){
+                flagExiste=1;
+                if(p.getDataDevolucao().equals("")){
+                    p.setDataDevolucao(data);
+                }
+                else{System.out.println("O Pedido já foi devolvido.");}
+            }
+        }
+        if(flagExiste==0){
+            System.out.println("O pedido não existe.");
+        }
+    }
+
+    public String listarPedidos(){
+        String listaDePedidos="";
+        for(Pedido p:pedidos){
+            listaDePedidos+=p.getId()+" "+p.getDataPedido()+" "+p.getDataDevolucao() + "\n";
+        }
+        if(listaDePedidos==""){
+            return "Não existem pedidos";
+        }
+        else{
+            return listaDePedidos;
+        }
+    }
+
+>>>>>>> Stashed changes
 }
